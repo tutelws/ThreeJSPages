@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "12_3dTextPages" ]
+    branches: [ "stable" ]
   pull_request:
-    branches: [ "12_3dTextPages" ]
+    branches: [ "stable" ]
 
 jobs:
   build:
@@ -28,4 +28,9 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
+    - name: deploy
+      uses: JamesIves/github-pages-deploy-action@v4
+      with: 
+        branch: gh-pages
+        folder: build
   #  - run: npm test
